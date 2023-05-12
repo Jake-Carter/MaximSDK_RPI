@@ -29,11 +29,11 @@ echo ""
 sudo udevadm control --reload-rules
 sudo udevadm trigger --attr-match=subsystem=net
 
-#Add path's for .profile
-echo "Creating GCC binary path in .profile"
+#Untar GNUTools
+sudo mkdir $PWD/Tools/GNUTools
+sudo mkdir $PWD/Tools/GNUTools/10.3
+sudo tar -xvf ~/Downloads/gcc-arm-none-eabi-10.3-2021.10-aarch64-linux.tar.bz2 --strip-components=1 -C $PWD/Tools/GNUTools/10.3
 
-#Add path's for .profile
-echo "Creating GCC binary path in .profile"
 
 sudo cat << EOF >> ~/.profile
 
