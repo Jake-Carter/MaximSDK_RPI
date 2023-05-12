@@ -55,7 +55,6 @@
 int main(void)
 {
     int count = 0;
-
     printf("Hello World!\n");
 
     while (1) {

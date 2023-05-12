@@ -69,7 +69,7 @@
             "setupCommands": [
                 { "text":"set logging overwrite on"},
                 { "text":"set logging file debug-arm.log"},
-                { "text":"set logging on"},
+                //{ "text":"set logging on"},
                 { "text":"cd ${workspaceFolder}" },
                 { "text":"exec-file build/${config:program_file}" },
                 { "text":"symbol-file build/${config:symbol_file}" },

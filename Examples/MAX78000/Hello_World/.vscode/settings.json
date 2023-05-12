@@ -87,6 +87,10 @@
         "TARGET=${config:target}",
         "TARGET_REV=0x4131",
         "__GNUC__"
-    ]
+    ],
+    "files.associations": {
+        "mxc_device.h": "c",
+        "max78000.h": "c"
+    }
 }
 
