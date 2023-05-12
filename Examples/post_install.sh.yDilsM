@@ -1,9 +1,0 @@
-#
-# For macOS go 6 level up instead of 3
-# this script only calls for macOS
-#
-examples="$1"
-chip="$2"
-
-# replace
-sed -i -e "s|PARENT-3-ECLIPSE_HOME|PARENT-6-ECLIPSE_HOME|g" $examples/$chip/*/.project
