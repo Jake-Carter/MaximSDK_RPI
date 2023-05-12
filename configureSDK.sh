@@ -29,28 +29,4 @@ echo ""
 sudo udevadm control --reload-rules
 sudo udevadm trigger --attr-match=subsystem=net
 
-#Untar GNUTools
-sudo mkdir $PWD/Tools/GNUTools
-sudo mkdir $PWD/Tools/GNUTools/10.3
-sudo tar -xvf ~/Downloads/gcc-arm-none-eabi-10.3-2021.10-aarch64-linux.tar.bz2 --strip-components=1 -C $PWD/Tools/GNUTools/10.3
-
-
-sudo cat << EOF >> ~/.profile
-
-# Set MAXIM_PATH to point to the MSDK
-export MAXIM_PATH=~/MaximSDK
-
-# Add Arm Embedded GCC to path (v10.3)
-export ARM_GCC_ROOT=\$MAXIM_PATH/Tools/GNUTools/10.3
-export PATH=\$ARM_GCC_ROOT/bin:\$PATH
-
-# Add xPack RISC-V GCC to path (v10.2)
-export XPACK_GCC_ROOT=\$MAXIM_PATH/Tools/xPack/riscv-none-embed-gcc/10.2.0-1.2
-export PATH=\$XPACK_GCC_ROOT/bin:\$PATH
-
-# Add OpenOCD to path
-export OPENOCD_ROOT=\$MAXIM_PATH/Tools/OpenOCD
-export PATH=\$OPENOCD_ROOT:\$PATH
-EOF
-
 echo "Setup of MAX78000 RPI Hat complete! Grats'"
