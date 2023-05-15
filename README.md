@@ -84,4 +84,33 @@ Both of the above links will walkthrough the basics of getting started with VSCo
 
 # Possible Issues
 In this section I will outline a couple of known issues that I have encountered and possible resolutions.
-- When attempting to debug in VSCode, you may encounter issues with an invalid path for compiler or debugger. ![Bad Compiler](images/badCompilerPath.png) ![Bad Debugger](images/badDebuggerPath.png)
+
+## Bad MSDK Installation Path
+When attempting to build a project or debug in VSCode, you may encounter issues with an invalid path for compiler or debugger. Error messages are shown below:
+
+**Error thrown when attempting to build a project:**
+
+![Bad Compiler](images/badCompilerPath.png) 
+
+**Error thrown when attempting to debug a project:**
+
+![Bad Debugger](images/badDebuggerPath.png)
+
+**FIX:** Open up the developer console using the hotkey `CTRL+SHIFT+P`. Use the developer console prompt to open the user settings by typing in: `Preferences: Open User Settings (JSON)`. Make sure that the MAXIM_PATH variable is set correctly. Remember that this file path must be hard-coded in, and no shortcuts (such as using `~` for home directory) can be used.
+
+## OpenOCD Port Busy
+When attempting to flash or debug, VSCode may give an error: `OpenOCD: GDB Server Quit Unexpectedly. See gdb-server output in TERMINAL tab for more details.` One issue that could produce this error is an OpenOCD instance is already running on the RPI. This can be caused by having another VSCode window open and still conected to the debugger, from manually opening an OpenOCD connection in a terminal window, or from VSCode not closing properly.
+
+**Error thrown when OpenOCD port is busy:**
+
+![OpenOCD port is busy](images/GDBbusy.png)
+
+**FIX:** Open up a terminal window and check to see if an OpenOCD instance is already running by typing `lsof -i tcp`. If any of the TCP connection has "OpenOCD" as the command, note the PID number. Kill the PID by typing `sudo kil <PID>`. An example is shown below.
+
+**Find OpenOCD PID and Kill the Process:**
+
+![Kill OpenOCD Process](images/clearPID.png)
+
+**After the Process has been cleared:**
+
+![Debugger Connection after OpenOCD Cleared](images/debuggerWorkingAgain.png)
