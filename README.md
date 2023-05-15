@@ -60,7 +60,7 @@ This will install VSCode and open up a window. Once VSCode opens up, it will ask
 
 All of the SDK libraries, drivers, compilers, and debuggers are linked based on the installation path of the MAXIM_RPI MSDK. In order to tell VSCode where to find the MSDK installation, we have to add in the `MAXIM_PATH` variable to this user settings file. An important thing to note is that while Linux recognizes the `~` symbol as a shortcut to the home directory, VSCode cannot resolve this type of file path. That means that you have to type out the full file path of your MSDK installation. We are also going to use the user settings file to disable automatic updates for VSCode and the VSCode extensions.
 
-An example for a username of "analog-person" should look sometihng like the following:
+In case some additional setting(s) were already configured in the user settings file, make sure to leave them and append this information. An example for a username of "analog-person" should look sometihng like the following:
 
 ```
 MAXIM_PATH="/home/analog-person/MaximSDK_RPI",
@@ -68,7 +68,19 @@ MAXIM_PATH="/home/analog-person/MaximSDK_RPI",
 "extensions.autoUpdate": false,
 ```
 
-# Debugging with VSCode
+![User Settings in JSON](images/userSettingsJSON.png)
+
+
+After saving these changes, we need to restart VSCode so that the new user settings are loaded from the JSON file. Simply close out this VSCode window and open a new one via terminal command `code`. After restartomg the program, the VSCode enviroment has been setup, and it is time to start working with the micro.
+
+# Getting Started with VSCode
+
+The MSDK was developed to work seamlessly with VSCode. The RPI version of VSCode works identically to the Windows or MacOS versions. 
+- **Offical MSDK VSCode Extension:** https://github.com/Analog-Devices-MSDK/VSCode-Maxim#usage
+- **Offical MSDK User Guide:** https://analog-devices-msdk.github.io/msdk/USERGUIDE/#visual-studio-code
+
+Both of the above links will walkthrough the basics of getting started with VSCode for firmware development and debugging.
+
 
 # Possible Issues
 In this section I will outline a couple of known issues that I have encountered and possible resolutions.
