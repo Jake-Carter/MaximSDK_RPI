@@ -23,18 +23,18 @@ If starting from a fresh OS image, I recommend using the provided RPI imager (ht
 ![RPI OS Version](images/RPIVersion.png)
 
 # Setting up the SDK
-Before you can begin the MSDK setup on your Raspberry Pi, you need to make sure you have Git installed. You can quickly verify that Git is installed by checking the version
+Before you can begin the MSDK setup on your Raspberry Pi, you need to make sure you have Git installed. Open up a terminal window. You can quickly verify that Git is installed by checking the version
 ```
 git --version
 ```
 
-Once you have verified that Git is installed, it is time to install the MaximSDK_RPI repo. The recommended installation location is the home directory of the Raspberry Pi. This will help simplify the VSCode setup later. If you are unsure of the home directory path, you can easily find it by using the Linux shortcut `~` identifier. Change into the home directory, and clone the Maxim_RPI repo:
+Once you have verified that Git is installed, it is time to install the MaximSDK_RPI repo. The recommended installation location is the home directory of the Raspberry Pi. This will help simplify the VSCode setup later. If you are unsure of the home directory path, you can easily find it by using the Linux shortcut `~`. Change into the home directory, and clone the Maxim_RPI repo:
 ```
 cd ~
 sudo git clone https://github.com/lypinator/MaximSDK_RPI.git
 ```
 
-Once the repo has finished cloning, you need to enter the cloned directory and run the `configureSDK.sh` setup script. In order to run the script, you have to first make it an executable. The script installs the required dependencies for running the Open On-Chip Debugger (OpenOCD) binary files, and it sets up your permissions so that OpenOCD can access the USB port. The setup is as simple as:
+Once the repo has finished downloading, you need to enter the cloned directory and run the `configureSDK.sh` setup script. In order to run the script, you have to first make it an executable. The script installs the required dependencies for running the Open On-Chip Debugger (OpenOCD) binary files, and it sets up your permissions so that OpenOCD can access the USB port. The setup is as simple as:
 
 ```
 cd ~/MaximSDK_RPI
@@ -47,18 +47,26 @@ Once the configuration script has finished running, it is time to move onto sett
 # Setting up the VSCode Enviroment
 If you would prefer to debug without a user-interface (or on a headless OS) you can follow the MSDK Linux setup guide here: https://analog-devices-msdk.github.io/msdk/USERGUIDE/#linuxmacos
 
-VSCode is now supported on Raspberry Pi OS, so if you have a desktop on your OS, I highly recommend using VSCode. It is a great IDE for both writing firmware as well as debugging. One great feature of the MSDK is that it directly supports VSCode integration, so the setup is pretty simple. You can install and open a VSCode window with: 
+VSCode is now supported on Raspberry Pi OS, so if you have a desktop on your RPI's OS, I highly recommend using VSCode. It is a great IDE for both writing firmware as well as debugging. One great feature of the MSDK is that it directly supports VSCode integration, so the setup is pretty simple. You can install and open a VSCode window by opening a terminal window and typing out: 
 
 ```
 sudo apt-install code -y
 code
 ```
 
-Once VSCode opens up, it will ask you to select the color theme. Once selected, open up the developer console using the hotkey `CTRL+SHIFT+P`. Use the developer console prompt to open the user settings by typing in: `Preferences: Open User Settings (JSON)`
+This will install VSCode and open up a window. Once VSCode opens up, it will ask you to select the color theme. After selecting the color theme, open up the developer console using the hotkey `CTRL+SHIFT+P`. Use the developer console prompt to open the user settings by typing in: `Preferences: Open User Settings (JSON)`
 
 ![User Settings in Developer Console](images/userSettings.png)
 
+All of the SDK libraries, drivers, compilers, and debuggers are linked based on the installation path of the MAXIM_RPI MSDK. In order to tell VSCode where to find the MSDK installation, we have to add in the `MAXIM_PATH` variable to this user settings file. An important thing to note is that while Linux recognizes the `~` symbol as a shortcut to the home directory, VSCode cannot resolve this type of file path. That means that you have to type out the full file path of your MSDK installation. We are also going to use the user settings file to disable automatic updates for VSCode and the VSCode extensions.
 
+An example for a username of "analog-person" should look sometihng like the following:
+
+```
+MAXIM_PATH="/home/analog-person/MaximSDK_RPI",
+"update.mode": "manual",
+"extensions.autoUpdate": false,
+```
 
 # Debugging with VSCode
 
