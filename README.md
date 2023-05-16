@@ -10,7 +10,7 @@ For this project I am using the Raspberry Pi 4B. Some older versions of RPI may 
 For a board to debug, I will be using the MAX78000FTHR with the provided microUSB cable.
 
 ## Software Requirements
-Raspberry Pi has many OS versions compatible with the RPI 4B, but I have elected to use Raspberry Pi OS (64-Bit). The 64-bit version will only run on RPI 3/4/400 hardware, so any older boards will not be supported by this version of the Maxim SDK. Since I will be using VSCode, I obviously elected for the OS with a UI, but the drivers provided here should also work on headless version of the OS. It is iomportant to note that this version of Open On-Chip Debugger (OpenOCD) was compiled specifically for an AARCH-64 OS, so the OpenOCED binary file WILL NOT work on a 32-bit OS.
+Raspberry Pi has many OS versions compatible with the RPI 4B, but I have elected to use Raspberry Pi OS (64-Bit). The 64-bit version will only run on RPI 3/4/400 hardware, so any older boards will not be supported by this version of the MSDK. Since I will be using VSCode, I obviously went for the OS with a UI, but the drivers provided here should also work on headless version of the OS. It is iomportant to note that this version of Open On-Chip Debugger (OpenOCD) was compiled specifically for an AARCH-64 OS, so the OpenOCD binary file WILL NOT work on a 32-bit OS.
 
 If starting from a fresh OS image, I recommend using the provided RPI imager (https://www.raspberrypi.com/software/). 
 
@@ -37,6 +37,7 @@ sudo git clone https://github.com/lypinator/MaximSDK_RPI.git
 Once the repo has finished downloading, you need to enter the cloned directory and run the `configureSDK.sh` setup script. In order to run the script, you have to first make it an executable. The script installs the required dependencies for running the Open On-Chip Debugger (OpenOCD) binary files, and it sets up your permissions so that OpenOCD can access the USB port. The setup is as simple as:
 
 ```
+sudo
 cd ~/MaximSDK_RPI
 sudo chmod +x configureSDK.sh
 sudo ./configureSDK.sh
@@ -50,7 +51,7 @@ If you would prefer to debug without a user-interface (or on a headless OS) you 
 VSCode is now supported on Raspberry Pi OS, so if you have a desktop on your RPI's OS, I highly recommend using VSCode. It is a great IDE for both writing firmware as well as debugging. One great feature of the MSDK is that it directly supports VSCode integration, so the setup is pretty simple. You can install and open a VSCode window by opening a terminal window and typing out: 
 
 ```
-sudo apt-install code -y
+sudo apt install code -y
 code
 ```
 
@@ -71,7 +72,7 @@ MAXIM_PATH="/home/analog-person/MaximSDK_RPI",
 ![User Settings in JSON](images/userSettingsJSON.png)
 
 
-After saving these changes, we need to restart VSCode so that the new user settings are loaded from the JSON file. Simply close out this VSCode window and open a new one via terminal command `code`. After restartomg the program, the VSCode enviroment has been setup, and it is time to start working with the micro.
+After saving these changes, we need to restart VSCode so that the new user settings are loaded from the JSON file. Simply close out this VSCode window and open a new one via terminal command `code`. The last step for setting up the MSDK in VSCode is intalling the C/C++ extension and the Cortex-Debug extension. Once the extensions are installed, you are ready to get started in VSCode.
 
 # Getting Started with VSCode
 
