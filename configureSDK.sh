@@ -22,7 +22,7 @@ sudo apt install --yes libhidapi-hidraw0 libhidapi-dev libncurses5-dev libncurse
 
 #Copy rules file to /etc/udev/rules.d
 echo "Copying Permissions File to /etc/udev/rules.d/"
-sudo cp OpenOCD/60-openocd.rules /etc/udev/rules.d/
+sudo cp Tools/OpenOCD/60-openocd.rules /etc/udev/rules.d/
 echo ""
 
 #refresh
