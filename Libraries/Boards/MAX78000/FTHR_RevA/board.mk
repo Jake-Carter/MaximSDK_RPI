@@ -41,14 +41,43 @@ SRCS += board.c
 SRCS += stdio.c
 SRCS += led.c
 SRCS += pb.c
-SRCS += tft_ili9341.c
+SRCS += tft_ssd2119.c
+SRCS += tsc2046.c
 SRCS += camera.c
-SRCS += ov7692.c
-SRCS += sccb.c
-SRCS += max20303.c
-SRCS += max9867.c
 
+ifeq "$(CAMERA)" "HM0360"
+$(warning Using mono HM0360 by default.)
+$(warning Use CAMERA=HM0360_COLOR for color drivers, or CAMERA=HM0360_MONO to clear this warning.)
+CAMERA=HM0360_MONO
+endif
+
+ifeq "$(CAMERA)" "HM01B0"
+SRCS += hm01b0.c
+PROJ_CFLAGS+=-DCAMERA_HM01B0
+PROJ_CFLAGS+=-DCAMERA_MONO
+else ifeq "$(CAMERA)" "HM0360_MONO"
+SRCS += hm0360_mono.c
+PROJ_CFLAGS+=-DCAMERA_HM0360_MONO
+PROJ_CFLAGS+=-DCAMERA_MONO
+else ifeq "$(CAMERA)" "HM0360_COLOR"
+SRCS += hm0360_color.c
+PROJ_CFLAGS+=-DCAMERA_BAYER
+PROJ_CFLAGS+=-DCAMERA_HM0360_COLOR
+else ifeq "$(CAMERA)" "OV5642"
+SRCS += ov5642.c
+PROJ_CFLAGS+=-DCAMERA_OV5642
+else ifeq "$(CAMERA)" "OV7692"
+SRCS += ov7692.c
 PROJ_CFLAGS+=-DCAMERA_OV7692
+else ifeq "$(CAMERA)" "PAG7920"
+SRCS += pag7920.c
+PROJ_CFLAGS+=-DCAMERA_PAG7920
+PROJ_CFLAGS+=-DCAMERA_MONO
+else ifeq "$(CAMERA)" ""
+SRCS += ov7692.c
+PROJ_CFLAGS+=-DCAMERA_OV7692
+endif
+SRCS += sccb.c
 
 MISC_DRIVERS_DIR=$(BOARD_DIR)/../../../MiscDrivers
 
@@ -60,9 +89,8 @@ VPATH += $(MISC_DRIVERS_DIR)/Camera
 VPATH += $(MISC_DRIVERS_DIR)/Display
 VPATH += $(MISC_DRIVERS_DIR)/LED
 VPATH += $(MISC_DRIVERS_DIR)/PushButton
-VPATH += $(MISC_DRIVERS_DIR)/PMIC
 VPATH += $(MISC_DRIVERS_DIR)/Touchscreen
-VPATH += $(MISC_DRIVERS_DIR)/CODEC
+
 
 # Where to find BSP header files
 IPATH += $(BOARD_DIR)/Include
@@ -72,7 +100,4 @@ IPATH += $(MISC_DRIVERS_DIR)/Camera
 IPATH += $(MISC_DRIVERS_DIR)/Display
 IPATH += $(MISC_DRIVERS_DIR)/LED
 IPATH += $(MISC_DRIVERS_DIR)/PushButton
-IPATH += $(MISC_DRIVERS_DIR)/PMIC
 IPATH += $(MISC_DRIVERS_DIR)/Touchscreen
-IPATH += $(MISC_DRIVERS_DIR)/CODEC
-
