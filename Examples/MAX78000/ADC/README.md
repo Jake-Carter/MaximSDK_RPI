@@ -29,6 +29,12 @@ If using the MAX78000FTHR (FTHR_RevA)
 -   Open a terminal application on the PC and connect to the EV kit's console UART at 115200, 8-N-1.
 -   Apply an input voltage between 0 and 0.9V to the AIN0 pin on the J8 header
 
+If using the MAX78000 RPIHat (PIHAT_V1):
+-   Connect a USB cable between the Raspberry Pi and the CN1 (USB/PWR) connector.
+-   Open an terminal application on the Raspberry Pi and connect to the PiHat console UART at 115200, 8-N-1.
+-   Apply an input voltage between 0 and 0.9V to pin 1 of the J9 header.
+-   Select "PIHAT_V1" for _BOARD_ in "project.mk"
+
 ## Expected Output
 
 The Console UART of the device will output these messages:

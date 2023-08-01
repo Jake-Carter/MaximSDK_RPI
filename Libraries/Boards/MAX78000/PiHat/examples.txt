@@ -1,2 +1,16 @@
+ADC
+AES
+CRC
+DMA
+ECC
+Flash
+Flash_CLI
+FreeRTOSDemo
+GPIO
 Hello_World
-
+I2C_SCAN
+I2S
+ICC
+LED
+LED_Strip
+TRNG

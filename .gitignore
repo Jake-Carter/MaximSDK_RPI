@@ -1,3 +1,13 @@
+
+#No compiled files
 *.o
 *.d
 *.elf
+
+#No installer files
+/*.*
+/installerResources
+
+#Keep the SDK Installer stuff
+!/README.md
+!/configureSDK.sh

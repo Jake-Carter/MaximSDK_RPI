@@ -10,6 +10,10 @@ P2.6 (PB1) is continuously scanned and whatever value is read on that pin is the
 	
 P1.7 (SW2) is continuously scanned and whatever value is read on that pin is then output to P2.0 (Red LED in RGB LED). An interrupt is set up on P0.2 (SW1). P0.9 (the SDIO3 pin on header J4) toggles when that interrupt occurs.
 
+### MAX78000FTHR (PIHAT_V1):
+	
+P2.6 (Pin 4 on J9) is continuously scanned and whatever value is read on that pin is then output to P2.0 (Red LED). An interrupt is set up on P2.7 (Pin 5 on J9). P2.2 (Blue LED) toggles when that interrupt occurs.
+
 ## Software
 
 ### Project Usage
@@ -33,6 +37,10 @@ If using the MAX78000FTHR (FTHR_RevA)
 -   Connect a USB cable between the PC and the CN1 (USB/PWR) connector.
 -   Open a terminal application on the PC and connect to the EV kit's console UART at 115200, 8-N-1.
 -   Connect a logic analyzer to the SDIO3 pin on header J4 to observe the pin toggling on each SW1 button press.
+
+If using the MAX78000 RPIHat (PIHAT_V1):
+-   Connect a USB cable between the Raspberry Pi and the CN1 (USB/PWR) connector.
+-   Open an terminal application on the Raspberry Pi and connect to the PiHat console UART at 115200, 8-N-1.
 
 ## Expected Output
 

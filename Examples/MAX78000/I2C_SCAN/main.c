@@ -50,10 +50,14 @@
 #include "i2c.h"
 
 /***** Definitions *****/
-#ifdef BOARD_EVKIT_V1
+#if defined(BOARD_EVKIT_V1)
 #define I2C_MASTER MXC_I2C2 // SCL P0_30; SDA P0_31
 #define I2C_SCL_PIN 30
 #define I2C_SDA_PIN 31
+#elif  defined(PIHAT_V1)
+#define I2C_MASTER MXC_I2C0 // SCL P0_30; SDA P0_31
+#define I2C_SCL_PIN 10
+#define I2C_SDA_PIN 11
 #else
 #define I2C_MASTER MXC_I2C1 // SCL P0_16; SDA P0_17
 #define I2C_SCL_PIN 16

@@ -106,6 +106,18 @@ int main()
     printf("\nMicrophone enabled!\n");
 #endif
 
+#ifdef BOARD_PIHAT_V1
+
+    if(Microphone_Power(1) != E_NO_ERROR) {
+        printf("Unable to turn on microphone!\n");
+        while(1){}
+    } 
+
+    MXC_Delay(MXC_DELAY_MSEC(200));
+    
+    printf("\nMicrophone enabled!\n");
+
+#endif
     /* Initialize I2S RX buffer */
     memset(i2s_rx_buffer, 0, sizeof(i2s_rx_buffer));
 

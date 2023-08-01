@@ -48,7 +48,7 @@
 #include "gpio.h"
 
 /***** Definitions *****/
-#ifdef BOARD_EVKIT_V1
+#if defined(BOARD_EVKIT_V1)
 #define MXC_GPIO_PORT_IN MXC_GPIO2
 #define MXC_GPIO_PIN_IN MXC_GPIO_PIN_6
 
@@ -60,9 +60,8 @@
 
 #define MXC_GPIO_PORT_INTERRUPT_STATUS MXC_GPIO0
 #define MXC_GPIO_PIN_INTERRUPT_STATUS MXC_GPIO_PIN_3
-#endif
 
-#ifdef BOARD_FTHR_REVA
+#elif defined(BOARD_FTHR_REVA)
 #define MXC_GPIO_PORT_IN MXC_GPIO1
 #define MXC_GPIO_PIN_IN MXC_GPIO_PIN_7
 
@@ -74,6 +73,19 @@
 
 #define MXC_GPIO_PORT_INTERRUPT_STATUS MXC_GPIO0
 #define MXC_GPIO_PIN_INTERRUPT_STATUS MXC_GPIO_PIN_9
+
+#elif defined(BOARD_PIHAT_V1)
+#define MXC_GPIO_PORT_IN MXC_GPIO2
+#define MXC_GPIO_PIN_IN MXC_GPIO_PIN_6
+
+#define MXC_GPIO_PORT_OUT MXC_GPIO2
+#define MXC_GPIO_PIN_OUT MXC_GPIO_PIN_0
+
+#define MXC_GPIO_PORT_INTERRUPT_IN MXC_GPIO2
+#define MXC_GPIO_PIN_INTERRUPT_IN MXC_GPIO_PIN_7
+
+#define MXC_GPIO_PORT_INTERRUPT_STATUS MXC_GPIO2
+#define MXC_GPIO_PIN_INTERRUPT_STATUS MXC_GPIO_PIN_2
 #endif
 
 /***** Globals *****/
@@ -98,7 +110,13 @@ int main(void)
     printf("   P0.2 (LED1).\n");
     printf("2. An interrupt is set up on P2.7 (PB2 input). P0.3 (LED2) toggles when\n");
     printf("   that interrupt occurs.\n\n");
-#else
+#elif defined(BOARD_PIHAT_V1)
+    printf("\n\n***** GPIO Example *****\n\n");
+    printf("1. This example reads P2.6 (Pin 4 on J9) and outputs the same state onto\n");
+    printf("   P2.0 (Red LED).\n");
+    printf("2. An interrupt is set up on P2.7 (Pin 5 on J9). P2.2 (Blue LED) toggles when\n");
+    printf("   that interrupt occurs.\n\n");
+#elif defined(BOARD_FTHR_REVA)
     printf("\n\n***** GPIO Example *****\n\n");
     printf("1. This example reads P1.7 (SW2 input) and outputs the same state onto\n");
     printf("   P2.0 (LED1).\n");
