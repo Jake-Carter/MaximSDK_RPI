@@ -42,7 +42,6 @@
 #include "mxc_assert.h"
 #include "board.h"
 #include "gpio.h"
-#include "pt.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -67,13 +66,18 @@ typedef union RGB_LED{
 
 #define LED_RES         24          //24-bit led resolution
 
+#if defined(BOARD_PIHAT_V1)   
+#define NUM_LEDS        4          
+#else   
+#define NUM_LEDS        0
+#endif
 /***** Globals *****/
 
 
 /* **** Function Prototypes **** */
 
 /**
- * @brief Initalize the Pulse Train Engine for sending LED Strip data
+ * @brief Initalize the data pin for sending LED Strip data
  *  
  * @param PT_Channel Pulse Train Engine channel connected to LED Strip DataIn
  * 

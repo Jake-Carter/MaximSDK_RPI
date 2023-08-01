@@ -41,6 +41,7 @@
 
 /*  LED Strand Variables    */
 RGB_Pixel_t LEDStrip_PixelData[NUM_LEDS] = {0};              //Hold pixel value
+mxc_gpio_cfg_t LEDStripDINPin = {0};
 
 /*  Private Function Prototype  */
 
@@ -50,11 +51,11 @@ uint32_t Wheel(uint8_t pos, uint8_t DIM_FACTOR);
 void LEDStrip_BitBang();
 
 /******************************************************************************/
-int LEDStrip_Init(mxc_gpio_cfg_t *LEDStripDataPin)
+int LEDStrip_Init(mxc_gpio_cfg_t *DataPin)
 {
-
-    MXC_GPIO_Config(&LEDStripDataPin);
-    MXC_GPIO0->out_clr = LEDStripDataPin.pin;
+    LEDStripDINPin = *DataPin;
+    MXC_GPIO_Config(&LEDStripDINPin);
+    MXC_GPIO0->out_clr = LEDStripDINPin.mask;
     
     return (E_NO_ERROR);
 }
@@ -173,23 +174,23 @@ void LEDStrip_BitBang(){
         LED_BitMask = 0x01 << (LED_RES-1);
         while(LED_BitMask)
         {
-            MXC_GPIO0->out_set = MXC_GPIO_PIN_19;
+            LEDStripDINPin.port->out_set = LEDStripDINPin.mask;
             if ((LEDStrip_PixelData[i].val & LED_BitMask)){
 
                     /*  '1' Bit */
-                    MXC_GPIO0->out_set = MXC_GPIO_PIN_19;   //Pin HIGH
+                    LEDStripDINPin.port->out_set = LEDStripDINPin.mask;   //Pin HIGH
                     LED_BitMask >>= 1;                      //Shift mask
                     for( j=0;j<ONE_HIGHTICK_OFFSET;j++){}   //Intentional delay
-                    MXC_GPIO0->out_clr = MXC_GPIO_PIN_19;   //Pin LOW
+                    LEDStripDINPin.port->out_clr = LEDStripDINPin.mask;   //Pin LOW
                     for( j=0;j<ONE_LOWTICK_OFFSET;j++){}    //Intentional delay
             }
             else
             {        
                     /*  '0' Bit */
-                    MXC_GPIO0->out_set = MXC_GPIO_PIN_19;   //Pin HIGH
+                    LEDStripDINPin.port->out_set = LEDStripDINPin.mask;   //Pin HIGH
                     LED_BitMask >>= 1;                      //Shift mask
                     for( j=0;j<ZERO_HIGHTICK_OFFSET;j++){}  //Intentional delay
-                    MXC_GPIO0->out_clr = MXC_GPIO_PIN_19;   //Pin LOW
+                    LEDStripDINPin.port->out_clr = LEDStripDINPin.mask;   //Pin LOW
                     for( j=0;j<ZERO_LOWTICK_OFFSET;j++){}   //Intentional delay
             }
         }

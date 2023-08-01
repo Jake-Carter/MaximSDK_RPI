@@ -45,26 +45,19 @@
 #include "board.h"
 #include "gpio.h"
 #include "mxc_delay.h"
+#include "mxc_sys.h"
 #include "IN-PI33TBTPRPGPB.h"
 
 /***** Definitions *****/
-#define DIM_FACTOR 0        //Set the dimming factor (0:Full Brightness; 7: Minimum brightness)
+#define DIM_FACTOR 4        //Set the dimming factor (0:Full Brightness; 7: Minimum brightness)
 #define CYCLES 0            //Set the number of cycles to run through the rainbow (0 = infinite)
 
 #if defined(BOARD_PIHAT_V1)
 mxc_gpio_cfg_t LEDStripDataPin = { MXC_GPIO0, MXC_GPIO_PIN_19, MXC_GPIO_FUNC_OUT, MXC_GPIO_PAD_NONE,
                                     MXC_GPIO_VSSEL_VDDIOH };
-#endif
-
-
-#ifdef BOARD_PIHAT_V1   //Using the MAX78000_RPIHat
-
-#define NUM_LEDS        4           //LEDs on board
-
-#else   //Not using the MAX78000_RPIHat
-
-#define NUM_LEDS        0 //Number of LEDs in chain
-
+#else
+mxc_gpio_cfg_t LEDStripDataPin = { MXC_GPIO0, MXC_GPIO_PIN_19, MXC_GPIO_FUNC_OUT, MXC_GPIO_PAD_NONE,
+                                    MXC_GPIO_VSSEL_VDDIOH };
 #endif
 
 /***** Globals *****/
@@ -92,7 +85,7 @@ int main(void)
 #endif
 
     //Intialize data output pin
-    if(LEDStrip_Init(&LEDStripDataPin)!=E_NO_ERROR){
+    if(LEDStrip_Init(&LEDStripDataPin) != E_NO_ERROR){
         printf("Error Initalizing the LED Strip Data Pin!\n");
         while(1){}
     }

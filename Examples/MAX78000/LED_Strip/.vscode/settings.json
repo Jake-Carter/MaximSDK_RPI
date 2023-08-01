@@ -99,7 +99,8 @@
         "pt_reva.h": "c",
         "tmr.h": "c",
         "flc.h": "c",
-        "nvic_table.h": "c"
+        "nvic_table.h": "c",
+        "mxc_sys.h": "c"
     }
 }
 
