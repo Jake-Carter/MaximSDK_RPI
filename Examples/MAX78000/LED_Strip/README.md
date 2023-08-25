@@ -38,3 +38,13 @@ If using the MAX78000 RPIHat (PIHAT_V1):
 ## Expected Output
 
 You should observe a rainbow effect that travels down the LED strip.
+
+The Console UART of the device will output these messages:
+
+```
+***** LED Strip Example *****
+This example sends a rainbow animation through the onboard RGB LEDs.
+LED Strip Length: 4 LEDs
+LED Strip Resolution: 24 bits
+Sitback and enjoy the show!
+```

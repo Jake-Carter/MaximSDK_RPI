@@ -14,7 +14,7 @@ Info : max32xxx.cpu: target has 6 breakpoints, 4 watchpoints
 Info : max32xxx.cpu: external reset detected
 Info : starting gdb server for max32xxx.cpu on pipe
 target halted due to debug-request, current mode: Thread 
-xPSR: 0x010f0000 pc: 0x10000850 msp: 0x2001ffd8
+xPSR: 0x410f0000 pc: 0x10000648 msp: 0x20020000
 Info : SWD DPIDR 0x2ba01477
 target halted due to debug-request, current mode: Thread 
 xPSR: 0x81000000 pc: 0x00002124 msp: 0x20003ff0
@@ -25,7 +25,7 @@ Warn : Prefer GDB command "target extended-remote :pipe" instead of "target remo
 Info : SWD DPIDR 0x2ba01477
 target halted due to debug-request, current mode: Thread 
 xPSR: 0x81000000 pc: 0x00002124 msp: 0x20003ff0
-Info : Padding image section 0 at 0x10008d04 with 12 bytes
+Info : Padding image section 0 at 0x1000db94 with 12 bytes
 Info : SWD DPIDR 0x2ba01477
 target halted due to debug-request, current mode: Thread 
 xPSR: 0x81000000 pc: 0x00002124 msp: 0x20003ff0

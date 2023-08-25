@@ -177,7 +177,6 @@ int Camera_Power(int on)
 /******************************************************************************/
 int Microphone_Power(int on)
 {
-    int err;
     
     mxc_gpio_cfg_t MicPowerEnablePin = { MXC_GPIO1, MXC_GPIO_PIN_6, MXC_GPIO_FUNC_OUT, MXC_GPIO_PAD_NONE,
                                     MXC_GPIO_VSSEL_VDDIO };

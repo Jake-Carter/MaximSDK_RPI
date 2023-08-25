@@ -15,7 +15,7 @@
     },
     
     "target":"MAX78000",
-    "board":"EvKit_V1",
+    "board":"PIHAT_V1",
 
     "project_name":"${workspaceFolderBasename}",
 

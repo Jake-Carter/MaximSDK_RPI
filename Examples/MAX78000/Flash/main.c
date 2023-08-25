@@ -51,7 +51,7 @@
 #include "icc.h"
 #include "uart.h"
 #include "led.h"
-#ifndef BOARD_AUD01_REVA
+#if !defined(BOARD_AUD01_REVA) && !defined(BOARD_PIHAT_V1)
 #include "pb.h"
 #endif
 
@@ -246,7 +246,7 @@ int main(void)
     int err = 0;
 
     printf("\n\n***** Flash Control Example *****\n");
-#ifndef BOARD_AUD01_REVA
+#if !defined(BOARD_AUD01_REVA) && !defined(BOARD_PIHAT_V1)
     printf("Press Push Button 1 (PB1/SW1) to continue...\n\n");
     PB_RegisterCallback(0, (pb_callback)button_handler);
     while (!button_pressed) {
